@@ -120,7 +120,9 @@ function LithosLogo() {
 
 function getPage() {
   if (typeof window === "undefined") return "lithos";
-  return window.location.hash === "#/toonhub" || window.location.pathname === "/toonhub" ? "toonhub" : "lithos";
+  return window.location.hash === "#/toonhub" || window.location.pathname.endsWith("/toonhub")
+    ? "toonhub"
+    : "lithos";
 }
 
 function LithosHome() {

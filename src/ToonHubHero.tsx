@@ -1,3 +1,4 @@
+import type { CSSProperties } from "react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 
@@ -24,8 +25,7 @@ const IMAGES = [
   },
 ];
 
-const roles = ["center", "left", "right", "back"] as const;
-type Role = (typeof roles)[number];
+type Role = "center" | "left" | "right" | "back";
 
 function getRole(index: number, activeIndex: number): Role {
   if (index === activeIndex) return "center";
@@ -130,7 +130,7 @@ export default function ToonHubHero() {
             const role = getRole(index, activeIndex);
             const isCenter = role === "center";
             const sideHeight = isMobile ? "16%" : "28%";
-            const roleStyles: Record<Role, React.CSSProperties> = {
+            const roleStyles: Record<Role, CSSProperties> = {
               center: {
                 left: "50%",
                 bottom: isMobile ? "22%" : 0,
