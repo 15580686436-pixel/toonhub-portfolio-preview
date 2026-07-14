@@ -1,6 +1,5 @@
 import { Menu } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
-import ToonHubHero from "./ToonHubHero";
 
 const BG_IMAGE_1 =
   "https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260609_195923_b0ba8ace-1d1d-4f2c-9a28-1ab84b330680.png&w=1280&q=85";
@@ -118,14 +117,7 @@ function LithosLogo() {
   );
 }
 
-function getPage() {
-  if (typeof window === "undefined") return "lithos";
-  return window.location.hash === "#/toonhub" || window.location.pathname.endsWith("/toonhub")
-    ? "toonhub"
-    : "lithos";
-}
-
-function LithosHome() {
+function App() {
   const mouse = useRef<CursorPosition>({ x: -999, y: -999 });
   const smooth = useRef<CursorPosition>({ x: -999, y: -999 });
   const rafRef = useRef<number | null>(null);
@@ -282,22 +274,6 @@ function LithosHome() {
       </section>
     </main>
   );
-}
-
-function App() {
-  const [page, setPage] = useState(getPage);
-
-  useEffect(() => {
-    const updatePage = () => setPage(getPage());
-    window.addEventListener("hashchange", updatePage);
-    window.addEventListener("popstate", updatePage);
-    return () => {
-      window.removeEventListener("hashchange", updatePage);
-      window.removeEventListener("popstate", updatePage);
-    };
-  }, []);
-
-  return page === "toonhub" ? <ToonHubHero /> : <LithosHome />;
 }
 
 export default App;
